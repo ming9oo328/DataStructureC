@@ -65,7 +65,6 @@ poly multiple_polys(poly a, poly b) {
 			}
 		}
 	}
-
 	return d;
 }
 
