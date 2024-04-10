@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 #define max(a,b) ((a>b)? a:b) // 두 polynomial 중 degree가 더 큰 것 판단
 #define MAX_DEGREE 101 // max degree of polynomial+1
 
@@ -19,20 +20,53 @@ void print_poly(poly p) {
 		}
 	}
 	if (p.coef[0] != 0) {
-		printf("%3.2lf\n", p.coef[0]);
+		printf("%3.2lf", p.coef[0]);
 	}
+	printf("\n");
 }
 
-poly add_two_polys(poly a, poly b){
+poly add_polys(poly a, poly b){
 	int i;
 	int maxdegree = max(a.degree, b.degree);
 	poly c;
 	c.degree = maxdegree;
 
-	for (i = 0; i <= maxdegree; i++) {
+	for (i = 0; i < maxdegree; i++) {
 		c.coef[i] = a.coef[i] + b.coef[i];
 	}
 	return c;
+}
+
+bool isIn(int *a, int data) {
+	int i;
+	for (i = 0; i < sizeof(a); i++) {
+		if (a[i] == data) {
+			return true;
+		}
+	}
+	return false;
+}
+
+poly multiple_polys(poly a, poly b) {
+	int i,j;
+	poly d;
+	d.degree = a.degree + b.degree-1;
+	int check[101];
+
+	for (i = 0; i < a.degree; i++) {
+		for (j = 0; j < b.degree; j++) {
+			int expo = i + j;
+			if (isIn(check, expo)) {
+				d.coef[expo] += a.coef[i] * b.coef[j];
+			}
+			else {
+				check[expo] = expo;
+				d.coef[expo] = a.coef[i] * b.coef[j];
+			}
+		}
+	}
+
+	return d;
 }
 
 int main() {
@@ -44,9 +78,13 @@ int main() {
 	printf("%20s", "polynomial b : ");
 	print_poly(b);
 
-	poly c = add_two_polys(a, b);
+	poly c = add_polys(a, b);
 	printf("%20s", "sum of a, b : ");
 	print_poly(c);
+
+	poly d = multiple_polys(a, b);
+	printf("%20s", "multi of a, b : ");
+	print_poly(d);
 
 	return 0;
 }
