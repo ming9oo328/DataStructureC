@@ -36,6 +36,19 @@ void addNode(int num, char d) {
 	}
 }
 
+void deleteNode(char d) {
+	listNode* curr = ptr;
+	listNode* prev = NULL;
+	while (curr!=NULL) {
+		if (curr->data == d) break;
+		prev = curr;
+		curr = prev->link;
+	}
+	prev->link = curr->link;
+	free (curr);
+	cnt--;
+}
+
 void printNode() {
 	if (isEmpty(ptr)) {
 		printf("list가 비어있습니다.\n");
@@ -56,6 +69,8 @@ int main() {
 	addNode(2, 'c');
 	printNode();
 	addNode(2, 'd');
+	printNode();
+	deleteNode('b');
 	printNode();
 
 	return 0;
