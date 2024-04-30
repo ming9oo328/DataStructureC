@@ -14,18 +14,18 @@ void initArray(dArray* arr, int initialCap) {
 	arr->capacity = initialCap;
 }
 
-bool isEmpty(dArray* arr) {
+bool ArrayisEmpty(dArray* arr) {
 	if (arr->curr == 0) return true;
 	else return false;
 }
 
-bool isFull(dArray* arr) {
+bool ArrayisFull(dArray* arr) {
 	if (arr->curr == arr->capacity) return true;
 	else return false;
 }
 
 void addIndex(dArray* arr, int index, int item) {
-	if (isFull(arr)) {
+	if (ArrayisFull(arr)) {
 		arr->capacity *= 2;
 		printf("Array is full. Multiplized capacity : %d\n", arr->capacity);
 	}
@@ -43,7 +43,7 @@ void addIndex(dArray* arr, int index, int item) {
 }
 
 void deleteIndex(dArray* arr, int index) {
-	if (isEmpty(arr)) {
+	if (ArrayisEmpty(arr)) {
 		printf("array is empty.\n");
 		return;
 	}
@@ -74,7 +74,7 @@ void printIndex(dArray* arr, int index) {
 }
 
 void printarr(dArray* arr) {
-	if (isEmpty(arr)) {
+	if (ArrayisEmpty(arr)) {
 		printf("array is empty.\n");
 		return;
 	}

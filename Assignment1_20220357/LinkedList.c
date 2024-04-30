@@ -1,77 +1,80 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 typedef struct listNode* listPointer;  // 아직 선언 안된 자료형에 대해 포인터 참조만 가능
 typedef struct {
-	char data;
+	int data;
+	int cnt;
+	listPointer start;
 	listPointer link;
 }listNode; // self referential structure
-listPointer ptr = NULL;
-int cnt = 0;
 
-#define isEmpty(ptr) (!ptr) // list가 비어있는지 확인하는 메크로
+void initList(listNode* list) {
+	list->start = (listNode*)malloc(sizeof(listNode));
+	list->cnt = 0;
+}
 
-void addNode(int num, char d) {
-	if (isEmpty(ptr)) {
+bool ListisEmpty(listNode* list) {
+	if (list->cnt<=0) return true;
+	else return false;
+}
+
+void addNode(listNode* list, int index, int data) {
+	if (ListisEmpty(list)){
 		listNode* newNode = (listNode*)malloc(sizeof(listNode));
-		ptr = newNode;
-		newNode->data = d;
+		list->start = newNode;
+		newNode->data = data;
 		newNode->link = NULL;
-		cnt++;
+		list->cnt++;
 	}
-	else if (cnt + 1 <= num) {
+	else if (list->cnt + 1 <= index) {
 		printf("잘못된 위치입니다.\n");
 		return;
 	}
 	else {
-		listNode* curr = ptr;
-		for (int i = 1; i < num; i++) {
+		listNode* curr = list->start;
+		for (int i = 1; i < index; i++) {
 			curr = curr->link;
 		}
 		listNode* addNode = (listNode*)malloc(sizeof(listNode));
-		addNode->data = d;
+		addNode->data = data;
 		addNode->link = curr->link;
 		curr->link = addNode;
-		cnt++;
+		list->cnt++;
 	}
 }
 
-void deleteNode(char d) {
-	listNode* curr = ptr;
+void deleteNode(listNode* list, int index) {
+	listNode* curr = list->start;
 	listNode* prev = NULL;
-	while (curr != NULL) {
-		if (curr->data == d) break;
+
+	for (int i = 0; i < index; i++) {
 		prev = curr;
-		curr = prev->link;
+		curr = curr->link;
+		if (curr == NULL) {
+			printf("잘못된 인덱스입니다.\n");
+			return;
+		}
 	}
-	prev->link = curr->link;
+	if (prev == NULL) { // 삭제할 노드가 첫 번째 노드인 경우
+		list->start = curr->link;
+	}
+	else {
+		prev->link = curr->link;
+	}
 	free(curr);
-	cnt--;
+	list->cnt--;
 }
 
-void printNode() {
-	if (isEmpty(ptr)) {
+void printNode(listNode* list) {
+	if (ListisEmpty(list)) {
 		printf("list가 비어있습니다.\n");
 		return;
 	}
-	listNode* curr = ptr;
-	for (curr = ptr; curr != NULL; curr = curr->link) {
-		printf("%c ", curr->data);
+	listNode* curr = list-> start;
+	for (curr = list->start; curr != NULL; curr = curr->link) {
+		printf("%d ", curr->data);
 	}
 	printf("\n");
-}
-
-int main() {
-	printNode();
-	addNode(0, 'a');
-	addNode(2, 'b');
-	addNode(1, 'b');
-	addNode(2, 'c');
-	printNode();
-	addNode(2, 'd');
-	printNode();
-	deleteNode('b');
-	printNode();
-
-	return 0;
 }
