@@ -1,9 +1,3 @@
-#ifndef _LINKEDLIST_H_
-#define __LINKEDLIST_H_
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -20,13 +14,12 @@ void initList(listNode* list);
 
 bool ListisEmpty(listNode* list);
 
-bool ListisFull(listNode* list);
-
 void addNode(listNode* list, int index, int data);
 
-void deleteNode(listNode* list, int data);
+void deleteNode(listNode* list, int index);
+
+void accessHead(listNode* list);
 
 void printNode(listNode* list);
 
-
-#endif
+void freeLinkedList(listNode* list);

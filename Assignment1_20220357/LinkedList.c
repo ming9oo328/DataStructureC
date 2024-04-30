@@ -11,7 +11,7 @@ typedef struct {
 }listNode; // self referential structure
 
 void initList(listNode* list) {
-	list->start = (listNode*)malloc(sizeof(listNode));
+	list->start = (listNode*)malloc(sizeof(listNode*));
 	list->cnt = 0;
 }
 
@@ -22,7 +22,7 @@ bool ListisEmpty(listNode* list) {
 
 void addNode(listNode* list, int index, int data) {
 	if (ListisEmpty(list)){
-		listNode* newNode = (listNode*)malloc(sizeof(listNode));
+		listNode* newNode = (listNode*)malloc(sizeof(listNode*));
 		list->start = newNode;
 		newNode->data = data;
 		newNode->link = NULL;
@@ -37,7 +37,7 @@ void addNode(listNode* list, int index, int data) {
 		for (int i = 1; i < index; i++) {
 			curr = curr->link;
 		}
-		listNode* addNode = (listNode*)malloc(sizeof(listNode));
+		listNode* addNode = (listNode*)malloc(sizeof(listNode*));
 		addNode->data = data;
 		addNode->link = curr->link;
 		curr->link = addNode;
@@ -67,6 +67,17 @@ void deleteNode(listNode* list, int index) {
 	list->cnt--;
 }
 
+void accessHead(listNode* list) {
+	if (ListisEmpty(list)) {
+		printf("리스트가 비어 있습니다.\n");
+		return;
+	}
+
+	listNode* first = list->start;
+	printf("Head element of the list : %d\n", first->data);
+}
+
+
 void printNode(listNode* list) {
 	if (ListisEmpty(list)) {
 		printf("list가 비어있습니다.\n");
@@ -77,4 +88,13 @@ void printNode(listNode* list) {
 		printf("%d ", curr->data);
 	}
 	printf("\n");
+}
+
+void freeLinkedList(listNode* list) {
+	listNode* curr = list->start;
+	while (curr != NULL) {
+		listNode* temp = curr;
+		curr = curr->link;
+		free(temp);
+	}
 }

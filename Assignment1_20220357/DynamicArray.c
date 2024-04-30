@@ -63,7 +63,7 @@ void deleteIndex(dArray* arr, int index) {
 	}
 }
 
-void printIndex(dArray* arr, int index) {
+void accessIndex(dArray* arr, int index) {
 	for (int i = 0; i <= arr->curr; i++) {
 		if (i == index) {
 			printf("Element in index %d : %d\n", index, arr->array[index]);
@@ -87,5 +87,5 @@ void printarr(dArray* arr) {
 
 void freeDynamicArray(dArray* arr) {
 	free(arr->array); // 배열 메모리 free
-	arr->array = NULL; // 포인터를 NULL로 설정하여 dangling pointer 방지
+	arr->array = NULL; // 포인터를 NULL로 설정
 }

@@ -20,7 +20,7 @@ void addIndex(dArray* arr, int index, int item);
 
 void deleteIndex(dArray* arr, int index);
 
-void printIndex(dArray* arr, int index);
+void accessIndex(dArray* arr, int index);
 
 void printarr(dArray* arr);
 

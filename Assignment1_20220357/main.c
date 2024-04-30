@@ -26,7 +26,7 @@ int main() {
 	printarr(&arr); // >> 10 20 30 50 60
 
 	// 배열에서 특정 인덱스의 요소 출력
-	printIndex(&arr, 1); // Element in index 1 : 20
+	accessIndex(&arr, 1); // Element in index 1 : 20
 
 	// 배열의 메모리 해제
 	freeDynamicArray(&arr);
@@ -47,6 +47,9 @@ int main() {
 	printNode(&l);
 	deleteNode(&l, 0);
 	printNode(&l);
+	accessHead(&l);
+
+	freeLinkedList(&l);
 
 	return 0;
 }
