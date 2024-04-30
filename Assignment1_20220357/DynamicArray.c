@@ -58,7 +58,7 @@ void deleteIndex(dArray* arr, int index) {
 
 	if (arr->curr <= arr->capacity / 2) {
 		arr->capacity /= 2;
-		arr->array = realloc(arr->array, arr->capacity * sizeof(int)); // 배열 크기 재조정
+		arr->array = realloc(arr->array, arr->capacity * sizeof(int*)); // 배열 크기 재조정
 		printf("Resized capacity : %d\n", arr->capacity);
 	}
 }
