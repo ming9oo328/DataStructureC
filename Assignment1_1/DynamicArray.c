@@ -27,6 +27,7 @@ bool ArrayisFull(dArray* arr) {
 void addIndex(dArray* arr, int index, int item) {
 	if (ArrayisFull(arr)) {
 		arr->capacity *= 2;
+		arr->array =realloc(arr->array, (arr->capacity) * sizeof(int));
 		printf("Array is full. Multiplized capacity : %d\n", arr->capacity);
 	}
 	if (index < 0 || index > arr->curr) {
@@ -39,7 +40,7 @@ void addIndex(dArray* arr, int index, int item) {
 		}
 	}
 	arr->array[index] = item;
-	arr->curr++;
+	(arr->curr)+=1;
 }
 
 void deleteIndex(dArray* arr, int index) {
@@ -54,22 +55,25 @@ void deleteIndex(dArray* arr, int index) {
 	for (int i = index; i < arr->curr - 1; i++) {
 		arr->array[i] = arr->array[i + 1];
 	}
-	arr->curr--;
+	(arr->curr)-=1;
 
-	if (arr->curr <= arr->capacity / 2) {
+	if ((arr->curr) < ((arr->capacity) / 2+1)) {
 		arr->capacity /= 2;
-		arr->array = realloc(arr->array, arr->capacity * sizeof(int*)); // 배열 크기 재조정
+		arr->array =realloc(arr->array, (arr->capacity) * sizeof(int)); // 배열 크기 재조정
 		printf("Resized capacity : %d\n", arr->capacity);
 	}
 }
 
 void accessIndex(dArray* arr, int index) {
-	for (int i = 0; i <= arr->curr; i++) {
-		if (i == index) {
-			printf("Element in index %d : %d\n", index, arr->array[index]);
-			return;
+	if (index >= 0 && index < arr->curr) {
+		for (int i = 0; i <= arr->curr; i++) {
+			if (i == index) {
+				printf("Element in index %d : %d\n", index, arr->array[index]);
+				return;
+			}
 		}
 	}
+
 	printf("해당 index에는 데이터가 존재하지 않습니다.\n");
 }
 
@@ -86,6 +90,5 @@ void printarr(dArray* arr) {
 }
 
 void freeDynamicArray(dArray* arr) {
-	free(arr->array); // 배열 메모리 free
-	arr->array = NULL; // 포인터를 NULL로 설정
+	free(arr->array);// 배열 메모리 free
 }

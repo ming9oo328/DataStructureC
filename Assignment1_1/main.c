@@ -1,7 +1,9 @@
 #include "DynamicArray.h"
 #include "LinkedList.h"
 
+
 int main() {
+
 	dArray arr;
 	initArray(&arr, 5); // 초기 용량이 5인 동적 배열 생성
 

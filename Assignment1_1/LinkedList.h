@@ -1,3 +1,5 @@
+#ifndef _LINKEDLIST_H_
+#define __LINKEDLIST_H_
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -23,3 +25,5 @@ void accessHead(listNode* list);
 void printNode(listNode* list);
 
 void freeLinkedList(listNode* list);
+
+#endif
