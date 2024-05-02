@@ -49,7 +49,7 @@ linked_access_times = [0.0173, 0.0457, 0.0694, 0.0971]               # milliseco
 sizes = [5000, 15000, 25000, 35000]
 
 # Generalized sizes
-generalized_sizes = np.linspace(5000, max(sizes), 100)
+generalized_sizes = np.linspace(5000, 100000, 10000)
 
 # Generalized time complexities
 generalized_dynamic_insertion = np.polyfit(sizes, dynamic_insertion_times, 2)
@@ -116,7 +116,7 @@ plt.xlabel('Size of Data Structure')
 plt.ylabel('Time (milliseconds)')
 plt.yscale('log')  # Use logarithmic scale for y-axis
 plt.legend()
-plt.ylim(0, max(max(dynamic_insertion_times), max(linked_insertion_times)) * 1.1)  # Adjust y-axis limit
+#plt.ylim(0, max(max(dynamic_insertion_times), max(linked_insertion_times)) * 1.1)  # Adjust y-axis limit
 
 plt.tight_layout()
 plt.show()
