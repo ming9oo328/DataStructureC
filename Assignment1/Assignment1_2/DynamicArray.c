@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+//assignment 1_1의 코드를 활용하되, 시간복잡도 연산과 무관한 출력문은 주석처리
+
 typedef struct dynamicArray {
 	int* array; // 배열 포인터 선언
 	int curr; //현재 배열의 size(element의 개수)
@@ -35,7 +37,7 @@ void addIndex(dArray* arr, int index, int item) {
 		return;
 	}
 	if (index < arr->curr) {
-		for (int i = arr->curr; i > index; i--) { // 뒤에서부터 이동
+		for (int i = arr->curr; i > index; i--) {
 			arr->array[i] = arr->array[i - 1];
 		}
 	}
@@ -59,7 +61,7 @@ void deleteIndex(dArray* arr, int index) {
 
 	if ((arr->curr) < ((arr->capacity) / 2 + 1) && (arr->capacity>2)) {
 		arr->capacity /= 2;
-		arr->array = realloc(arr->array, (arr->capacity) * sizeof(int)); // 배열 크기 재조정
+		arr->array = realloc(arr->array, (arr->capacity) * sizeof(int));
 		//printf("Resized capacity : %d\n", arr->capacity);
 	}
 }
@@ -90,9 +92,8 @@ void printarr(dArray* arr) {
 }
 
 void freeDynamicArray(dArray* arr) {
-	if (arr->array != NULL) { // 배열이 할당되어 있는지 확인
-		free(arr->array); // 배열 메모리 해제
-		arr->array = NULL; // 배열 포인터를 NULL로 설정
+	if (arr->array != NULL) {
+		free(arr->array);
+		arr->array = NULL;
 	}
-	// 나머지 필요한 해제 작업 수행 (예: 기타 자원 해제)
 }
