@@ -1,3 +1,25 @@
+'''
+Dynamic Array Data Space (size 5000, elements 5000): 20000 bytes
+Dynamic Array Space Complexity (size 5000, elements 5000): 20016 bytes
+Linked List Data Space (size 5000, elements 5000): 20000 bytes
+Linked List Space Complexity (size 5000, elements 5000): 60000 bytes
+
+Dynamic Array Data Space (size 15000, elements 15000): 60000 bytes
+Dynamic Array Space Complexity (size 15000, elements 15000): 60016 bytes
+Linked List Data Space (size 15000, elements 15000): 60000 bytes
+Linked List Space Complexity (size 15000, elements 15000): 180000 bytes
+
+Dynamic Array Data Space (size 25000, elements 25000): 100000 bytes
+Dynamic Array Space Complexity (size 25000, elements 25000): 100016 bytes
+Linked List Data Space (size 25000, elements 25000): 100000 bytes
+Linked List Space Complexity (size 25000, elements 25000): 300000 bytes
+
+Dynamic Array Data Space (size 35000, elements 35000): 140000 bytes
+Dynamic Array Space Complexity (size 35000, elements 35000): 140016 bytes
+Linked List Data Space (size 35000, elements 35000): 140000 bytes
+Linked List Space Complexity (size 35000, elements 35000): 420000 bytes
+'''
+
 import numpy as np
 import matplotlib.pyplot as plt
 
