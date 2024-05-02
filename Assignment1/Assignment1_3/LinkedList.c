@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+//assignment 1_1의 코드를 활용하되, 공간복잡도 연산과 무관한 출력문은 주석처리
+
 typedef struct listNode* listPointer;  // 아직 선언 안된 자료형에 대해 포인터 참조만 가능
 typedef struct {
 	int data;
@@ -57,7 +59,7 @@ void deleteNode(listNode* list, int index) {
 			return;
 		}
 	}
-	if (prev == NULL) { // 삭제할 노드가 첫 번째 노드인 경우
+	if (prev == NULL) {
 		list->start = curr->link;
 	}
 	else {
